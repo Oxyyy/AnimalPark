@@ -31,6 +31,11 @@ class LoginActivity : ComponentActivity() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
             loginUser(email, password)
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Veuillez remplir tous les champs.", Toast.LENGTH_SHORT).show()
+            } else {
+                loginUser(email, password)
+            }
         }
 
         // Enregistrement
@@ -38,6 +43,11 @@ class LoginActivity : ComponentActivity() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
             registerUser(email, password)
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Veuillez remplir tous les champs.", Toast.LENGTH_SHORT).show()
+            } else {
+                registerUser(email, password)
+            }
         }
     }
 
