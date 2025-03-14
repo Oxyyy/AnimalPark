@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1027143808594",
+    "firebase_url": "https://animalpark-bdf96-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "animalpark-bdf96",
+    "storage_bucket": "animalpark-bdf96.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027143808594:android:6f7da2b5ee80f4362c118b",
+        "android_client_info": {
+          "package_name": "com.example.animalpark"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgZCWhe_JTkP7Sg9t446TjTW33EJj9Tsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
