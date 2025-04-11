@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.androidx.appcompat)
     implementation(libs.firebase.auth.ktx)
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -65,4 +66,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.google.firebase:firebase-database:20.2.1")
 }
