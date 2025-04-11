@@ -3,23 +3,24 @@ package com.example.animalpark.screens
 import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.animalpark.LoginActivity
 import com.example.animalpark.R
 import com.google.firebase.auth.FirebaseAuth
-
 
 @Composable
 fun HomeScreen() {
@@ -33,38 +34,50 @@ fun HomeScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(MaterialTheme.colorScheme.background)
+            .padding(horizontal = 24.dp, vertical = 32.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
     ) {
-        Text(text = "Bienvenue,", style = MaterialTheme.typography.headlineMedium)
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(text = userEmail, style = MaterialTheme.typography.bodyLarge)
+        Image(
+            painter = painterResource(id = R.drawable.animalpark_logo),
+            contentDescription = "Logo AnimalPark",
+            modifier = Modifier
+                .height(140.dp)
+                .padding(bottom = 12.dp)
+        )
+
+        Text(
+            text = userEmail,
+            style = MaterialTheme.typography.bodyLarge.copy(
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.secondary
+            )
+        )
+
         Button(
             onClick = {
-                auth.signOut()  // Déconnecter l'utilisateur
-                Toast.makeText(
-                    context,
-                    "Vous êtes déconnecté.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                val intent = Intent(context, LoginActivity::class.java)
-                context.startActivity(intent)
+                auth.signOut()
+                Toast.makeText(context, "Vous êtes déconnecté.", Toast.LENGTH_SHORT).show()
+                context.startActivity(Intent(context, LoginActivity::class.java))
             },
-            modifier = Modifier.padding(top = 16.dp)
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+            modifier = Modifier.padding(top = 8.dp, bottom = 24.dp)
         ) {
             Text("Se déconnecter")
         }
+
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
+                .height(300.dp)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.map_parc),
-                contentDescription = "Map du Parc",
+                contentDescription = "Carte du parc",
                 modifier = Modifier
-                    .size(300.dp)
+                    .fillMaxWidth()
                     .graphicsLayer(
                         scaleX = scale,
                         scaleY = scale,
@@ -73,15 +86,34 @@ fun HomeScreen() {
                     )
                     .pointerInput(Unit) {
                         detectTransformGestures { _, pan, zoom, _ ->
-                            scale = (scale * zoom).coerceIn(1f, 3f) // Zoom min 1x, max 5x en gros
+                            scale = (scale * zoom).coerceIn(1f, 2f)
                             offset = Offset(
-                                x = (offset.x + pan.x).coerceIn(-500f, 500f), // Limite les déplacements pour pas que ça se casse loiin
+                                x = (offset.x + pan.x).coerceIn(-500f, 500f),
                                 y = (offset.y + pan.y).coerceIn(-00f, 00f)
                             )
                         }
                     }
             )
         }
-    }
 
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Text(
+            text = "Bienvenue sur AnimalPark !",
+            style = MaterialTheme.typography.headlineSmall.copy(
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.primary
+            )
+        )
+
+        Text(
+            text = "Voyagez à travers les biomes du monde.",
+            style = MaterialTheme.typography.bodyMedium.copy(
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.secondary
+            ),
+            modifier = Modifier.padding(top = 4.dp)
+            )
+        }
 }

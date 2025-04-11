@@ -19,12 +19,9 @@ import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.example.animalpark.screens.BiomeDetailScreen
 import com.example.animalpark.screens.BiomesScreen
 import com.example.animalpark.screens.ServiceScreen
 import com.example.animalpark.screens.HomeScreen
@@ -85,7 +82,6 @@ class HomeActivity : ComponentActivity() {
                                 }
                             }
 
-//                            composable(biomesTab.title) { BiomesScreen() }
 
 
 

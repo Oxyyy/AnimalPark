@@ -26,7 +26,6 @@ class LoginActivity : ComponentActivity() {
         val loginButton = findViewById<Button>(R.id.loginButton)
         val registerButton = findViewById<Button>(R.id.registerButton)
 
-        // Connexion
         loginButton.setOnClickListener {
             val email = emailEditText.text?.toString()?.trim()
             val password = passwordEditText.text?.toString()?.trim()
@@ -38,7 +37,6 @@ class LoginActivity : ComponentActivity() {
             }
         }
 
-        // Enregistrement
         registerButton.setOnClickListener {
             val email = emailEditText.text?.toString()?.trim()
             val password = passwordEditText.text?.toString()?.trim()
@@ -91,13 +89,13 @@ class LoginActivity : ComponentActivity() {
 
     private fun navigateToHome() {
         startActivity(Intent(this, HomeActivity::class.java))
-        finish() // Empêche de revenir au login avec le bouton back
+        finish()
     }
 
     override fun onStart() {
         super.onStart()
         if (auth.currentUser != null) {
-            navigateToHome() // Redirige automatiquement si l'utilisateur est déjà connecté
+            navigateToHome()
         }
     }
 }
